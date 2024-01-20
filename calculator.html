@@ -16,7 +16,7 @@
         </div>
         <div class="inputs">
             <button id="restart" class="interaction-button" onclick="restart()">↺</button>
-            <input id="response" type="number" oninput="this.value = this.value.replace(/[^0-9]/g, '');" class="response" >
+            <input id="response" type="number" oninput="this.value = this.value.replace(/[^0-9]/g, ''); checkValid();" class="response" >
             <button id="next" class="interaction-button" onclick="next()">→</button>
         </div>
     </div>

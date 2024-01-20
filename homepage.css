@@ -60,6 +60,9 @@ body {
     transition: all 0.3s;
 }
 
-.back {
-
+.interaction-button.disabled {
+    background-color: #d3d3d3; /* Light gray or any other suitable color for disabled state */
+    border: 1px solid #a9a9a9; /* Adjust border color for disabled state */
+    color: #808080; /* Adjust text color for disabled state */
+    cursor: not-allowed; /* Change cursor to indicate the button is disabled */
 }

@@ -8,6 +8,8 @@ let gems;
 let avgSpeed;
 
 function restart() {
+    checkValid();
+
     questionNum = 0;
     yellowYolks = 0;
     multiplier = 1;
@@ -46,12 +48,29 @@ function refreshText() {
             formattedTime = convertMinutesToString(timeAway);
             promptText = `You are ${gemsAway.toLocaleString()} gems away. This should take ${tapsAway.toLocaleString()} taps or ${formattedTime}.`
             break;
-        case 6:
+        case 5:
             restart()
             break;
     }
 
     promptBox.textContent = promptText;
+    checkValid();
+}
+
+function checkValid() {
+    const responseInput = document.getElementById("response");
+    const input = responseInput.value;
+
+    const isValid = input.trim() !== '' && !isNaN(input);
+    let nextButton = document.getElementById("next");
+    nextButton.disabled = !isValid;
+    if (!isValid) {
+        nextButton.classList.add("disabled");
+    } else {
+        nextButton.classList.remove("disabled");
+    }
+
+    return isValid;
 }
 
 function convertMinutesToString(minutes) {
