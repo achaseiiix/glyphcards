@@ -50,6 +50,7 @@ function refreshText() {
             break;
         case 5:
             restart()
+            promptText = "How many yellow yolks do you already have for the egg?";
             break;
     }
 
