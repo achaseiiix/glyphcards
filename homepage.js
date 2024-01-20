@@ -42,7 +42,7 @@ function refreshText() {
             break;
         case 4:
             avgSpeed = getInput(responseInput);
-            gemsAway = (1000 - yellowYolks) * 100 / multiplier - gems;
+            gemsAway = Math.ceil((1000 - yellowYolks) * 100 / multiplier) - gems;
             tapsAway = gemsAway * GEM_TAP_RATE;
             timeAway = tapsAway / avgSpeed;
             formattedTime = convertMinutesToString(timeAway);
