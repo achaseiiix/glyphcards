@@ -28,7 +28,7 @@ function refreshText() {
             promptText = "How many yellow yolks do you already have for the egg?";
             break;
         case 1:
-            yellowYolks = getInput(responseInput);
+            yellowYolks = getInput(responseInput) % 1000;
             promptText = "What multiplier is the egg boosted at?";
 
             break;
@@ -93,7 +93,7 @@ function convertMinutesToString(minutes) {
 function getInput(inputBox) {
     result = inputBox.value;
     inputBox.value = '';
-    return result;
+    return Number(result);
 }
 
 function next() {
