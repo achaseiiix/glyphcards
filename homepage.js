@@ -62,7 +62,12 @@ function checkValid() {
     const responseInput = document.getElementById("response");
     const input = responseInput.value;
 
-    const isValid = input.trim() !== '' && !isNaN(input);
+    let isValid = input.trim() !== '' && !isNaN(input);
+    if (questionNum == 1) {
+        isValid = isValid && input >= 1 && input <= 10;
+    } else if (questionNum == 3) {
+        isValid = isValid && input > 0;
+    }
     let nextButton = document.getElementById("next");
     nextButton.disabled = !isValid;
     if (!isValid) {
