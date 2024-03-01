@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript" async
+    src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript"
+    id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tapping to Find e</title>
+    <link rel="stylesheet" href="homepage.css">
+</head>
+<body>
+    <header class="header-bar">
+        <h1>Tapping to Find e</h1>
+    </header>
+    <div class="body-container">
+        <div class="text-box">
+            <h3>Introduction</h3>
+            <p>
+                In math, there are a few universal constants that show up over and over again. Perhaps the most famous one is \(\pi= 3.1415...\), the ratio of the circumference of a circle to its diameter.
+                However, the second most famous constant is arguably \(e=2.7182...\) \(e\) is the exponential number, often called Euler's number. \(e\) is defined as 
+                \[
+                \begin{align*}
+                e&=\sum_{n=0}^{\infty}\frac{1}{n!}=1+\frac{1}{1}+\frac{1}{1\times 2}+\frac{1}{1\times 2\times 3}+... \\
+                &= \lim_{n\to\infty} \left(1+\frac{1}{n}\right)^n
+                \end{align*}
+                \]
+                What if I told you that you could calculate \(e\), one of the most famous numbers in the world, by tapping?
+            </p>
+            <h3>Finding \(e\) in One in a Trillion</h3>
+            <p>
+                In this game, everything is luck-based. As the name implies, everything relies on "one in a __" odds.
+                Let's consider the main gameplay loop. Let's assume the probabilies reported by the game reflect the true probabilities. That is, every time you tap, you have a \(\frac{1}{250}\) chance to see a 1 in 250 egg.
+            </p>
+            <p>Then, we can think of all the random events in the game as "coin flips" where landing on heads would mean hitting the "one in a __" odds and tails means missing.
+                Random events like these have been studied extensively by statisticians. So much so that their process has been formally defined as a <b>Bernoulli</b> distribution. 
+                The Bernoulli distribution can be used to mathematically define the odds of achieving a "one in a ___" event on a single tap. It is defined as 
+
+                \[P(X=1)=p\]
+
+                \[P(X=0)=1-p\]
+
+                where \(p\) is the probability of success and \(X\) is a binary outcome where 1 is a success, e.g., heads.
+                In this game, we can use this to define the odds of finding a one in 250 egg, for example, as follows.
+
+                \[P(\text{250 spawns})=\frac{1}{250}\]
+
+                \[P(\text{250 does not spawn})=1-\frac{1}{250}=\frac{249}{250}\]
+            </p>
+            <p>
+                So far, this may be pretty obvious and \(e\) doesn't show up anywhere. However, in the game, we don't just do a single tap. Instead, we do often do hundreds of thousands of taps a day. 
+                Let's look at the abstraction of the Bernoulli distribution for more than one "coin flip", known as the <b>Binomial</b> distribution.
+                
+                \[P(X=k)={n \choose k}p^k(1-p)^{n-k}\]
+
+                where \(k\) represents the number of successes in \(n\) trials. In the game, imagine that you want to know the odds of not finding a 1 in 250 egg in 200 taps. Then, we can plug it into the formula as 
+
+                \[
+                \begin{align*} 
+                P(X=0)&={200 \choose 0}\left(\frac{1}{250}\right)^0\left(\frac{249}{250}\right)^{200-0}\\
+                &= 1 \times 1 \times 0.996^{200} \\
+                &\approx 0.449
+                \end{align*}\]
+
+                So there is about a 45% chance of not finding a 1 in 250 egg in 200 taps! We still haven't seen \(e\), but this is necessary background and we're almost there!
+            </p>
+            <p>
+                Now, let's consider the odds of not finding a 1 in \(n\) egg in \(n\) taps.
+
+                \[
+                \begin{align*} 
+                P(X=0)&={n \choose 0}\left(\frac{1}{n}\right)^0\left(1-\frac{1}{n}\right)^{n}\\
+                &= 1 \times 1 \times \left(1-\frac{1}{n}\right)^{n} \\
+                &= \left(1-\frac{1}{n}\right)^{n} \\
+                &= \frac{1}{\left(1+\frac{1}{n}\right)^{n}} \quad \text{(through some algebra)}
+                \end{align*}\]
+            </p>
+            <p>
+                Now, what if we repeat this process a large amount of times? We perform \(n\) taps to get a 1 in \(n\) egg over and over again. Then,
+
+                \[
+                \begin{align*} 
+                \lim_{n\to\infty} P(X=0)&=\lim_{n\to\infty}\frac{1}{\left(1+\frac{1}{n}\right)^{n}}
+                \end{align*}\]
+
+                Now, recall the definition of \(e\) from the introductory paragraph!
+
+                \[
+                \begin{align*} 
+                \lim_{n\to\infty} P(X=0)&=\lim_{n\to\infty}\frac{1}{\left(1+\frac{1}{n}\right)^{n}} \\
+                &= \frac{1}{e}
+                \end{align*}\]
+
+                And there it is! By calculating the chance of not getting a "one in a ___" egg over a large amount of taps, we have found \(e\)!
+            </p>
+            <h3>Calculating it in the Game</h3>
+            <p>
+                Now that we have done the math to find \(e\), calculating it in the game is actually really simple! Below are some ways you can do it.
+            </p>
+            <ul>
+                <li><b>Tapping gems:</b> assume that gems are actually 1 in 25 rarity. Then, tap 25 times. If a gem ever spawns in those 25 taps, mark that down and restart. 
+                    If it does not spawn in 25 taps, mark that down and restart. (Keep in mind tapping a gem or egg does not count towards your taps.) Continue this as long as you want, keeping track of how many times a gem spawned and how many times a gem did not spawn.
+                    Then, do 
+                    \[\frac{\text{total number of attempts you did}}{\text{number of times a gem did not spawn}}\]
+                    
+                    You should see that this gets closer and closer to \(e\) the more attempts you do!
+                </li>
+                <li><b>Tapping eggs:</b> if you do not buy that gems are 1 in 25, you can try this with a rarity of egg, like 1 in 250. Simply follow the process above for 250 taps instead of 25.</li>
+                <li><b>Scrambles or frenzies:</b> put an exact amount of sauce correlating to an egg rarity on a scramble or frenzy egg, for example 250k sauce. Then, see if an egg of that rarity ever shows up during the scramble or frenzy. 
+                    Follow the process above.</li>
+            </ul>
+            <p>
+                To show that this works, I simulated this process a few times myself using a more efficient version of the gem tapping method. In 
+                <ul>
+                    <li><b>1,000 taps</b> I got \(2.6\)</li>
+                    <li><b>10,000 taps</b> I got \(2.766\)</li>
+                    <li><b>100,000 taps</b> I got \(2.751\)</li>
+                </ul>
+
+                Although this is not exactly \(e\approx 2.718\), we can get pretty close in a reasonable amount of taps!
+            </p>
+        </div>
+    </div>
+    
+    <script src="homepage.js"></script>
+</body>
+</html>

@@ -66,3 +66,10 @@ body {
     color: #808080; /* Adjust text color for disabled state */
     cursor: not-allowed; /* Change cursor to indicate the button is disabled */
 }
+
+.text-box {
+    background-color: white;
+    padding: 10px;
+    border: 1px solid black;
+    width: 100%;
+}
