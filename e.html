@@ -28,6 +28,11 @@
                 &= \lim_{n\to\infty} \left(1+\frac{1}{n}\right)^n
                 \end{align*}
                 \]
+
+                We can also write \(\frac{1}{e}\) as 
+                \[
+                \frac{1}{e} = \lim_{n\to\infty} \left(1-\frac{1}{n}\right)^n
+                \]
                 What if I told you that you could calculate \(e\), one of the most famous numbers in the world, by tapping?
             </p>
             <h3>Finding \(e\) in One in a Trillion</h3>
@@ -75,7 +80,6 @@
                 P(X=0)&={n \choose 0}\left(\frac{1}{n}\right)^0\left(1-\frac{1}{n}\right)^{n}\\
                 &= 1 \times 1 \times \left(1-\frac{1}{n}\right)^{n} \\
                 &= \left(1-\frac{1}{n}\right)^{n} \\
-                &= \frac{1}{\left(1+\frac{1}{n}\right)^{n}} \quad \text{(by algebra)}
                 \end{align*}\]
             </p>
             <p>
@@ -83,14 +87,14 @@
 
                 \[
                 \begin{align*} 
-                \lim_{n\to\infty} P(X=0)&=\lim_{n\to\infty}\frac{1}{\left(1+\frac{1}{n}\right)^{n}}
+                \lim_{n\to\infty} P(X=0)&=\lim_{n\to\infty} \left(1-\frac{1}{n}\right)^n
                 \end{align*}\]
 
                 Now, recall the definition of \(e\) from the introductory paragraph!
 
                 \[
                 \begin{align*} 
-                \lim_{n\to\infty} P(X=0)&=\lim_{n\to\infty}\frac{1}{\left(1+\frac{1}{n}\right)^{n}} \\
+                \lim_{n\to\infty} P(X=0)&=\lim_{n\to\infty} \left(1-\frac{1}{n}\right)^n \\
                 &= \frac{1}{e}
                 \end{align*}\]
 
