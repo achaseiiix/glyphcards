@@ -71,10 +71,12 @@ function drawSelected() {
     }
 
     // Iterate over sortedIds to generate HTML for each image
-    selectedGlyphs.forEach(id => {
+    for(let i=0; i < 4; i++) {
         // Create image element
         
         const img = document.createElement("img");
+        img.id = String(i);
+        id = selectedGlyphs[i];
         if (id == -1) {
             img.classList.add("blank-grid-image");
         } else {
@@ -88,10 +90,7 @@ function drawSelected() {
         
             // Update selectedId
             selectedId = id;
-            let index = selectedGlyphs.indexOf(selectedId);
-            if (index !== -1) {
-                selectedGlyphs[index] = -1;
-            }
+            selectedGlyphs[Number(img.id)] = -1;
             resultDisplay = document.getElementById("result-text");
             resultDisplay.textContent = "Select four glyphs!";
             drawSelected();
@@ -100,13 +99,14 @@ function drawSelected() {
 
         // Append image element to the container
         container.appendChild(img);
-    });
+    }
+    
 }
 
 function calculateRating() {
     glyphSum = 0
     selectedGlyphs.forEach(id => {
-        glyphSum += ratings[id];
+        glyphSum += dictionary[id];
     });
     cardRating = glyphSum / 4;
     resultDisplay = document.getElementById("result-text");
