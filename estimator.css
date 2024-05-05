@@ -1,0 +1,91 @@
+.grid-image {
+    width: 50px; /* Set the width */
+    height: 50px; /* Set the height */
+    margin: 5px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.grid-image {
+    transition: transform 0.3s ease; /* Add smooth transition effect */
+  }
+  
+.grid-image:hover {
+    transform: scale(1.2); /* Scale the image to 110% on hover */
+}
+
+.blank-grid-image {
+    width: 50px; /* Set the width */
+    height: 50px; /* Set the height */
+    margin: 5px;
+    border-radius: 10px;
+    border: 2px dashed black;
+    background-color: grey;
+    opacity: 50%;
+}
+
+.selected-glyph {
+    width: 50px; /* Set the width */
+    height: 50px; /* Set the height */
+    margin: 5px;
+    border-radius: 10px;
+    border: 2px dashed black;
+    transition: transform 0.3s ease; /* Add smooth transition effect */
+
+}
+
+.selected-glyph:hover {
+    transform: scale(1.2); /* Scale the image to 110% on hover */
+}
+
+.image-grid {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    font-size: x-large;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.image-grid {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    font-size: x-large;
+    display: flex;
+}
+
+.result-container {
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 400px;
+    border: 2px solid black;
+}
+
+.result-textbox {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.result-text {
+    font-size: x-large;
+    font-weight: 600;
+    color: white;
+    text-shadow: 2px 2px 0 var(--text-outline-color), -2px -2px 0 var(--text-outline-color), 2px -2px 0 var(--text-outline-color), -2px 2px 0 var(--text-outline-color);
+    justify-content: center;
+}
+
+.selected-grid {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
