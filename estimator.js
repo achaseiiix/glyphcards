@@ -60,8 +60,8 @@ function drawImages() {
 }
 
 function drawSelected() {
-    const container = document.getElementById("selected-grid-container");
-    container.innerHTML = "";
+    const grid_container = document.getElementById("selected-grid-container");
+    grid_container.innerHTML = "";
 
     if (selectedGlyphs.length == 0) {
         selectedGlyphs.push(-1);
@@ -71,9 +71,12 @@ function drawSelected() {
     }
 
     // Iterate over sortedIds to generate HTML for each image
-    for(let i=0; i < 4; i++) {
+    for (let i = 0; i < 4; i++) {
+        // Create container for image and text
+        const container = document.createElement("div");
+        container.classList.add("image-container");
+    
         // Create image element
-        
         const img = document.createElement("img");
         img.id = String(i);
         id = selectedGlyphs[i];
@@ -84,21 +87,34 @@ function drawSelected() {
             img.alt = `Glyph ID ${id}`;
             img.classList.add("selected-glyph");
         }
-
+    
         // Add click event listener
         img.addEventListener("click", () => {
-        
             // Update selectedId
             selectedId = id;
             selectedGlyphs[Number(img.id)] = -1;
             resultDisplay = document.getElementById("result-text");
             resultDisplay.textContent = "Select four glyphs!";
             drawSelected();
-
         });
-
+    
         // Append image element to the container
+        
+        // Create text element
+        const value = document.createElement("p");
+        if (id == -1) {
+            value.textContent = "None";
+        } else {
+            value.textContent = dictionary[id];
+        }
+        value.classList.add("value-text");
+        
+        // Append text element to the container
+        container.appendChild(value);
         container.appendChild(img);
+    
+        // Append container to the main container
+        grid_container.appendChild(container);
     }
     
 }

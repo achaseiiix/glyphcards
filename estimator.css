@@ -79,3 +79,11 @@
     justify-content: center;
     margin-bottom: 10px;
 }
+
+.value-text {
+    margin: 0
+}
+
+.image-container {
+    text-align: center;
+}
