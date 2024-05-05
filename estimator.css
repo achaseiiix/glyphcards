@@ -47,8 +47,8 @@
     border: 1px solid black;
     font-size: x-large;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .result-container {
